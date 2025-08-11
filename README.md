@@ -1,4 +1,5 @@
 
+
 # Hadoop on Windows 11 — Full end-to-end installation, usage, and running Python MapReduce jobs with `mrjob`
 
 ### About this repository
@@ -22,7 +23,7 @@ It’s designed to document **exactly** the same process I followed on my system
 - In System Variables, select **path** variable and click edit.
 	1. Add new path = `C:\Java8\jdk-1.8.*\bin`
 - Open **Command Prompt** and check java version using following command,
-	```bash
+	```powershell
 	C:\>java -version
 	```
 - If it says `java` is not identified as internal or external command, then is some mistake in Java installation.
@@ -43,4 +44,60 @@ It’s designed to document **exactly** the same process I followed on my system
 	@rem The java implementation to use.  Required.
 	set JAVA_HOME=C:\Java8\jdk-1.8.*
 	```
-- Now 
+- Now, we need to set another environment variable as follows,
+	1. In User variables, set `HADOOP_HOME` = `C:\hadoop\bin`
+	2. In  System variables, edit **path** variables by adding two new paths `C:\hadoop\bin` and `C:\hadoop\sbin`
+
+- Now, in the `C:\hadoop` folder create a new folder named as `data` and inside `data` folder create another two new folders named as `namenode` and `datanode`.	
+
+- Now we will need to edit the following files just like the above one. In all files we need to replace `<configuartion> </configuration>` blocks with following code.
+	- In `core-site.xml`,
+		```xml
+			<configuration>
+				<property>
+					  <name>fs.defaultFS</name>
+					  <value>hdfs://localhost:9000</value>
+				</property>
+			</configuration>
+		```
+	- In `hdfs-site.xml`,
+		```xml
+			<configuration>
+				<property>
+					  <name>dfs.replication</name>
+					  <value>1</value>
+				</property>
+				<property>
+					  <name>dfs.namenode.name.dir</name>
+					  <value>C:\hadoop\data\namenode</value>
+				</property>
+				<property>
+					  <name>dfs.datanode.data.dir</name>
+					  <value>C:\hadoop\data\datanode</value>
+				</property>
+			</configuration>
+		```
+	- In `mapred-site.xml`,
+		```xml
+			<configuration>
+				<property>
+					  <name>mapreduce.framework.name</name>
+					  <value>yarn</value>
+				</property>
+			</configuration>
+		```
+	- In `yarn-site.xml`,
+		```xml
+			<configuration>
+				<property>
+					  <name>yarn.nodemanager.aux-services</name>
+					  <value>mapreduce_shuffle</value>
+				</property>
+				<property>
+					  <name>yarn.nodemanager.auxservices.mapreduce.shuffle.class</name>
+					  <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+				</property>
+			</configuration>
+		```
+- Now, first go to the `C:\hadoop` and delete the `bin` folder.
+- Now download the new bin folder from [here](https://drive.google.com/file/d/1nCN_jK7EJF2DmPUUxgOggnvJ6k6tksYz/view) and paste/extract it to `C:\hadoop\`.
