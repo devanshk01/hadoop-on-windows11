@@ -6,16 +6,19 @@
 # Hadoop on Windows 11 — Full end-to-end installation, usage, and running Python MapReduce jobs with `mrjob`
 
 ### About this repository
-This repository provides a **step-by-step guide** to installing and running **Hadoop 3.2.4** on **Windows 11**, including configuration for Python **MapReduce** programs using the `mrjob` module.  
-It’s designed to document **exactly** the same process I followed on my system so anyone can replicate it without confusion.
+Hi, I’m Devansh Kukadia.
+I created this repository because many people were having trouble installing Hadoop, setting up the environment, or running it with Python’s `mrjob` module.
+
+This guide walks you through every step of installing and running Hadoop 3.2.4 on Windows 11, and configuring it to work with Python MapReduce programs using `mrjob`.
+It’s based on the exact process I followed on my own system, so you can replicate it easily without confusion.
 
 ---
 
 ### System Configurations
 - Operating System : Windows 11 
 - Architecture : 64 bit (x64)
-- RAM : 4 GB or more
-- Disk space : 5 GB or more
+- RAM : 4 GB or more (Recommended 8 GB)
+- Disk space : 5 GB or more (Recommended 10 GB)
 ---
 
 ### Install Java 8 and set `JAVA_HOME`
@@ -187,7 +190,7 @@ It’s designed to document **exactly** the same process I followed on my system
 - You need to run this map-reduce job on `amazon-sales.csv` file. I have uploaded the `csv` file in this repository itself.
 - To run this map-reduce job on hadoop, you need to upload the file to hdfs. For that run the following commands
     ```powershell
-    hdfs dfs -mkdir input /
+    hdfs dfs -mkdir /input
     ```
     ```powershell
     hdfs dfs -put C:\hadoop_jobs\amazon-sales.csv /input
