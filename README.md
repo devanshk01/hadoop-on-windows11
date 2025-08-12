@@ -1,5 +1,6 @@
 
 
+
 # Hadoop on Windows 11 — Full end-to-end installation, usage, and running Python MapReduce jobs with `mrjob`
 
 ### About this repository
@@ -50,7 +51,7 @@ It’s designed to document **exactly** the same process I followed on my system
 
 - Now, in the `C:\hadoop` folder create a new folder named as `data` and inside `data` folder create another two new folders named as `namenode` and `datanode`.	
 
-- Now we will need to edit the following files just like the above one. In all files we need to replace `<configuartion> </configuration>` blocks with following code.
+- Now we will need to edit the following files just like the above one. These files are in the folder `C:\hadoop\etc\hadoop`. In all files we need to replace `<configuartion> </configuration>` blocks with following code.
 	- In `core-site.xml`,
 		```xml
 			<configuration>
@@ -101,3 +102,32 @@ It’s designed to document **exactly** the same process I followed on my system
 		```
 - Now, first go to the `C:\hadoop` and delete the `bin` folder.
 - Now download the new bin folder from [here](https://drive.google.com/file/d/1nCN_jK7EJF2DmPUUxgOggnvJ6k6tksYz/view) and paste/extract it to `C:\hadoop\`.
+
+- Now, go to `C:\hadoop\bin` and run `winutils.exe`. If any error pops up saying that there is some `.dll` file is missing then check the name of that file and download it online and paste it to `C:\Windows\System32` folder.
+
+- If a terminal pop-up and disappears instantly without any error message when you run `winutils.exe`, then you are done.
+
+- Now your Hadoop set-up should be complete. To check if the set-up is successful, go to **Command Prompt** and run,
+    ```bash
+    C:\>hadoop version
+    ```
+
+- If it says, 'hadoop' is not recognised as an internal or external command, then there is some mistake in set-up. 
+
+- Now, after the successful set-up, run **Command Prompt** as administrator. Run the following command to format the namenode,
+    ```bash
+    C:\windows\system32>hdfs namenode -format
+    ```
+- Now, in terminal, go to `C:\hadoop\sbin` and run these two commands,
+    ```bash
+    C:\hadoop\sbin> start-dfs.cmd
+    C:\hadoop\sbin> start-yarn.cmd
+    ```
+- 4 new windows will pop-up. Now run
+    ```bash
+    C:\hadoop\sbin>jps
+    ```
+    
+- If it shows something like this, then your all your nodes and resource managers are working correctly.
+
+- You can also check them in your browser by visiting  and localhost:8088
