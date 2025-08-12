@@ -110,7 +110,7 @@ It’s designed to document **exactly** the same process I followed on my system
 			</configuration>
 		```
 - Now, first go to the `C:\hadoop` and delete the `bin` folder.
-- Now download the new bin folder from [here](https://drive.google.com/file/d/1nCN_jK7EJF2DmPUUxgOggnvJ6k6tksYz/view) and paste/extract it to `C:\hadoop\`.
+- Now download the new bin folder from this repository as `bin.exe` and extract the bin folder to `C:\hadoop`.
 
 - Now, go to `C:\hadoop\bin` and run `winutils.exe`. If any error pops up saying that there is some `.dll` file is missing then check the name of that file and download it online and paste it to `C:\Windows\System32` folder.
 
