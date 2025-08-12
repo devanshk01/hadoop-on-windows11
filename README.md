@@ -1,6 +1,7 @@
 
 
 
+
 # Hadoop on Windows 11 — Full end-to-end installation, usage, and running Python MapReduce jobs with `mrjob`
 
 ### About this repository
@@ -130,4 +131,9 @@ It’s designed to document **exactly** the same process I followed on my system
     
 - If it shows something like this, then your all your nodes and resource managers are working correctly.
 
-- You can also check them in your browser by visiting  and localhost:8088
+- You can also check them in your browser by visiting [localhost:9870](localhost:9870) and [localhost:8088](localhost:8088).
+
+---
+
+### Installing `mrjob` and writing Python Map-Reduce program
+- Go to `C:/` and create a new folder named `hadoop_jobs`. Open this folder in **VS Code**.
